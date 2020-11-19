@@ -177,6 +177,7 @@ github.com/dgraph-io/ristretto v0.0.3 h1:jh22xisGBjrEVnRZ1DVTpBVQm0Xndu8sMl0CWDz
 github.com/dgraph-io/ristretto v0.0.3/go.mod h1:KPxhHT9ZxKefz+PCeOGsrHpl1qZ7i70dGTu2u+Ahh6E=
 github.com/dgrijalva/jwt-go v3.2.0+incompatible h1:7qlOGliEKZXTDg6OTjfoBKDXWrumCAMpl/TFQ4/5kLM=
 github.com/dgrijalva/jwt-go v3.2.0+incompatible/go.mod h1:E3ru+11k8xSBh+hMPgOLZmtrrCbhqsmaPHjLKYnJCaQ=
+github.com/dgryski/go-farm v0.0.0-20190423205320-6a90982ecee2 h1:tdlZCpZ/P9DhczCTSixgIKmwPv6+wP5DGjqLYw5SUiA=
 github.com/dgryski/go-farm v0.0.0-20190423205320-6a90982ecee2/go.mod h1:SqUrOPUnsFjfmXRMNPybcSiG0BgUW2AuFH8PAnS2iTw=
 github.com/dgryski/go-sip13 v0.0.0-20181026042036-e10d5fee7954/go.mod h1:vAd38F8PWV+bWy6jNmig1y/TA+kYO4g3RSRF0IAv0no=
 github.com/dgryski/go-sip13 v0.0.0-20190329191031-25c5027a8c7b/go.mod h1:vAd38F8PWV+bWy6jNmig1y/TA+kYO4g3RSRF0IAv0no=
@@ -559,8 +560,8 @@ github.com/m3db/tools v0.0.0-20181008195521-c6ded3f34878 h1:kww0LtVVfGrXR7Ofpbi/
 github.com/m3db/tools v0.0.0-20181008195521-c6ded3f34878/go.mod h1:TxroQUZzb1wzOsq+4+TfVtT7z89YTz3v2UJAYfLNfLE=
 github.com/m3dbx/pilosa v1.4.2-0.20201109081833-6c9df43642fd h1:C+RCSMuplTpLH8Fiwb87XIkbYEabVf9itroR9+u4RYo=
 github.com/m3dbx/pilosa v1.4.2-0.20201109081833-6c9df43642fd/go.mod h1:Jt0+w9O08sa7qWDeRC58VBjb4OeOTDMOhfvVmyeVCO8=
-github.com/m3dbx/vellum v0.0.0-20200826162549-f94c029903de h1:C4DpCfTNzJf5RhJqxOtfWAnD2d6ls7KDnK1boBGUnVg=
-github.com/m3dbx/vellum v0.0.0-20200826162549-f94c029903de/go.mod h1:DOTAUfV4bzK6Nrb0dboT/oCG0DnQuX+/n0jfZPh6xxI=
+github.com/m3dbx/vellum v0.0.0-20201119082309-5b47f7a70f69 h1:dANuca0xuYlZR7qWdPIIAZKG0YHvsbLTzdenj53yQvc=
+github.com/m3dbx/vellum v0.0.0-20201119082309-5b47f7a70f69/go.mod h1:DOTAUfV4bzK6Nrb0dboT/oCG0DnQuX+/n0jfZPh6xxI=
 github.com/magiconair/properties v1.8.0/go.mod h1:PppfXfuXeibc/6YijjN8zIbojt8czPbwD3XqdrwzmxQ=
 github.com/magiconair/properties v1.8.1 h1:ZC2Vc7/ZFkGmsVC9KvOjumD+G5lXy2RtTKyzRKO2BQ4=
 github.com/magiconair/properties v1.8.1/go.mod h1:PppfXfuXeibc/6YijjN8zIbojt8czPbwD3XqdrwzmxQ=
