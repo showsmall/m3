@@ -39,8 +39,10 @@ import (
 	"go.uber.org/zap"
 )
 
-type commitLogFilesFn func(commitlog.Options) (persist.CommitLogFiles, []commitlog.ErrorWithPath, error)
-type snapshotMetadataFilesFn func(fs.Options) ([]fs.SnapshotMetadata, []fs.SnapshotMetadataErrorWithPaths, error)
+type (
+	commitLogFilesFn        func(commitlog.Options) (persist.CommitLogFiles, []commitlog.ErrorWithPath, error)
+	snapshotMetadataFilesFn func(fs.Options) ([]fs.SnapshotMetadata, []fs.SnapshotMetadataErrorWithPaths, error)
+)
 
 type snapshotFilesFn func(filePathPrefix string, namespace ident.ID, shard uint32) (fs.FileSetFilesSlice, error)
 
@@ -155,6 +157,11 @@ func (m *cleanupManager) WarmFlushCleanup(t time.Time, isBootstrapped bool) erro
 			"encountered errors when cleaning up index files for %v: %v", t, err))
 	}
 
+	if err := m.cleanupCorruptedIndexFiles(namespaces); err != nil {
+		multiErr = multiErr.Add(fmt.Errorf(
+			"encountered errors when cleaning up corrupted files for %v: %v", t, err))
+	}
+
 	if err := m.cleanupDuplicateIndexFiles(namespaces); err != nil {
 		multiErr = multiErr.Add(fmt.Errorf(
 			"encountered errors when cleaning up index files for %v: %v", t, err))
@@ -213,6 +220,7 @@ func (m *cleanupManager) ColdFlushCleanup(t time.Time, isBootstrapped bool) erro
 
 	return multiErr.FinalError()
 }
+
 func (m *cleanupManager) Report() {
 	m.RLock()
 	coldFlushCleanupInProgress := m.coldFlushCleanupInProgress
@@ -298,6 +306,22 @@ func (m *cleanupManager) cleanupExpiredIndexFiles(t time.Time, namespaces []data
 			continue
 		}
 		multiErr = multiErr.Add(idx.CleanupExpiredFileSets(t))
+	}
+	return multiErr.FinalError()
+}
+
+func (m *cleanupManager) cleanupCorruptedIndexFiles(namespaces []databaseNamespace) error {
+	multiErr := xerrors.NewMultiError()
+	for _, n := range namespaces {
+		if !n.Options().CleanupEnabled() || !n.Options().IndexOptions().Enabled() {
+			continue
+		}
+		idx, err := n.Index()
+		if err != nil {
+			multiErr = multiErr.Add(err)
+			continue
+		}
+		multiErr = multiErr.Add(idx.CleanupCorruptedFileSets())
 	}
 	return multiErr.FinalError()
 }
